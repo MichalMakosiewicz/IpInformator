@@ -2,11 +2,11 @@
 
 Web Ip geological data collector.
 
-##Summary
+## Summary
 
 The aim of this task is to build an API (backed by any kind of database) that requires JWT authorization. The application should be able to store geolocation data in the database, based on IP address or URL - you can use https://ipstack.com/ to get geolocation data (you can obtain free API KEY here -> https://ipstack.com/signup/free). The API should be able to add, delete or provide geolocation data on the base of ip address or URL.
 
-##Setup
+## Setup
 
 Requirements:
     
@@ -16,9 +16,9 @@ In root dir:
 
 run `docker-compose up`
 
-##Endpoints
+## Endpoints
 
-###Authorization
+### Authorization
 
 Method: JSON Web Token (https://en.wikipedia.org/wiki/JSON_Web_Token)
 
