@@ -31,8 +31,6 @@ class LanguageSerializer(serializers.ModelSerializer):
 
 
 class LocationSerializer(serializers.ModelSerializer):
-    languages = LanguageSerializer(many=True)
-
     class Meta:
         model = Location
         fields = [
@@ -48,8 +46,6 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class InformationSerializer(serializers.ModelSerializer):
-    location = LanguageSerializer()
-
     class Meta:
         model = Information
         fields = [

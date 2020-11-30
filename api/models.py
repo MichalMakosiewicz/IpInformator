@@ -17,6 +17,10 @@ class Location(models.Model):
     calling_code = models.CharField(max_length=20)
     is_eu = models.BooleanField()
 
+    def update_field(self, key, value):
+        getattr(self, key)
+        setattr(self, key, value)
+
 
 class Information(models.Model):
     ip = models.CharField(max_length=100)
@@ -31,4 +35,8 @@ class Information(models.Model):
     zip = models.CharField(max_length=20)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    location = models.ForeignKey(Location, related_name='location', on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, related_name='location', on_delete=models.PROTECT)
+
+    def update_field(self, key, value):
+        getattr(self, key)
+        setattr(self, key, value)
