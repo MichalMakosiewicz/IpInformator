@@ -76,18 +76,20 @@ class InformationViewSet(APIView):
     def put(self, request, inf_id):
         ip_data = json.loads(request.body)
         location = ip_data.pop('location')
+        information_id = ip_data.pop('id')
+        if int(inf_id) != information_id:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         try:
             location_instance = Location.objects.get(pk=location['geoname_id'])
             location.pop('geoname_id')
-            languages = location.pop('languages')
             for key, value in location.items():
                 location_instance.update_field(key, value)
                 location_instance.save(update_fields=location.keys())
+                print('test')
             information = Information.objects.get(pk=inf_id)
             for key, value in ip_data.items():
                 information.update_field(key, value)
                 information.save(update_fields=ip_data.keys())
-            return Response(status=status.HTTP_202_ACCEPTED)
+            return Response(get_nested(information), status=status.HTTP_202_ACCEPTED)
         except Exception as e:
-            print(e)
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"status": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
