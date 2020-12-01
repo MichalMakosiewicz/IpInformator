@@ -70,7 +70,7 @@ Gahter new data:
 Response:
 
     {
-        "id": 3,
+        "id": 2,
         "ip": "89.68.131.22",
         "type": "ipv4",
         "continent_code": "EU",
@@ -83,21 +83,30 @@ Response:
         "zip": "81-004",
         "latitude": 54.540679931640625,
         "longitude": 18.46780014038086,
-        "location": 3099424 - Object ID
+        "location": {
+            "geoname_id": 3099424,
+            "capital": "Szczecin",
+            "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+            "country_flag_emoji": "🇵🇱",
+            "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+            "calling_code": "48",
+            "is_eu": true,
+            "languages": [
+                {
+                    "code": "pl",
+                    "name": "Polish",
+                    "native": "Polski"
+                }
+            ]
     }
     
 `GET` `/api/info/?<int:id>`
-
-    Body:
-    {
-        "ip": "<IP>"
-    }
     
 Response:
 
     [
         {
-            "id": 3,
+            "id": 2,
             "ip": "89.68.131.22",
             "type": "ipv4",
             "continent_code": "EU",
@@ -110,43 +119,95 @@ Response:
             "zip": "81-004",
             "latitude": 54.540679931640625,
             "longitude": 18.46780014038086,
-            "location": 3099424 - Object ID
-        }
-    ]
-    
-`GET` `/api/location/?<id:int>`
-
-Response:
-
-    [
-        {
-            "model": "api.location",
-            "pk": 3099424,
-            "fields": {
-                "capital": "Warsaw",
+            "location": {
+                "geoname_id": 3099424,
+                "capital": "Szczecin",
                 "country_flag": "http://assets.ipstack.com/flags/pl.svg",
                 "country_flag_emoji": "🇵🇱",
                 "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
                 "calling_code": "48",
                 "is_eu": true,
                 "languages": [
-                    "pl" - Object ID
+                    {
+                        "code": "pl",
+                        "name": "Polish",
+                        "native": "Polski"
+                    }
                 ]
-            }
         }
     ]
     
-`GET` `/api/language/?<id>`
+`PUT` `/api/info/?<int:id>`
 
+Update values from body. Id from body needs to match id from url.
+
+    Body:
+    {
+        "id": 2,
+        "ip": "89.68.131.22",
+        "type": "ipv4",
+        "continent_code": "EU",
+        "continent_name": "Europe",
+        "country_code": "PL",
+        "country_name": "Poland",
+        "region_code": "PM",
+        "region_name": "Pomerania",
+        "city": "Gdynia",
+        "zip": "81-004",
+        "latitude": 54.540679931640625,
+        "longitude": 18.46780014038086,
+        "location": {
+            "geoname_id": 3099424,
+            "capital": "Szczecin",
+            "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+            "country_flag_emoji": "🇵🇱",
+            "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+            "calling_code": "48",
+            "is_eu": true,
+            "languages": [
+                {
+                    "code": "pl",
+                    "name": "Polish",
+                    "native": "Polski"
+                }
+            ]
+    }
+}
+    
 Response:
 
-    [
-        {
-            "model": "api.language",
-            "pk": "pl",
-            "fields": {
-                "name": "Polish",
-                "native": "Polski"
-            }
-        }
-    ]
+    {
+        "id": 2,
+        "ip": "89.68.131.22",
+        "type": "ipv4",
+        "continent_code": "EU",
+        "continent_name": "Europe",
+        "country_code": "PL",
+        "country_name": "Poland",
+        "region_code": "PM",
+        "region_name": "Pomerania",
+        "city": "Gdynia",
+        "zip": "81-004",
+        "latitude": 54.540679931640625,
+        "longitude": 18.46780014038086,
+        "location": {
+            "geoname_id": 3099424,
+            "capital": "Szczecin",
+            "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+            "country_flag_emoji": "🇵🇱",
+            "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+            "calling_code": "48",
+            "is_eu": true,
+            "languages": [
+                {
+                    "code": "pl",
+                    "name": "Polish",
+                    "native": "Polski"
+                }
+            ]
+    }
+    
+`DELETE` `/api/info/?<int:id>`
+
+Delete element with id from url.
+    

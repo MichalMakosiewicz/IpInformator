@@ -93,3 +93,11 @@ class InformationViewSet(APIView):
             return Response(get_nested(information), status=status.HTTP_202_ACCEPTED)
         except Exception as e:
             return Response({"status": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request, inf_id):
+        try:
+            information = Information.objects.get(pk=int(inf_id))
+            information.delete();
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Information.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
